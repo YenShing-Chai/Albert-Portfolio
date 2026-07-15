@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/theme-provider";
 import { site } from "@/lib/site";
@@ -105,6 +107,8 @@ export default function RootLayout({
             toastOptions={{ className: "font-sans" }}
           />
         </ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
