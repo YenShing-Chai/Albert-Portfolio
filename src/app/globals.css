@@ -1,26 +1,188 @@
 @import "tailwindcss";
 
+/* Class-based dark mode (driven by next-themes on <html class="dark">) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------------------
+   Design tokens — Editorial / near-monochrome
+   Light = warm paper + ink (default). Dark = warm charcoal.
+   A single restrained deep-navy accent, used only for small marks.
+--------------------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f4f1ea; /* warm ivory paper */
+  --surface: #faf8f3;
+  --surface-2: #ebe6da;
+  --foreground: #1b1a17; /* warm ink */
+  --muted: #6a675f;
+  --faint: #97928699; /* used with color-mix fallbacks below */
+  --faint-solid: #979286;
+  --border: rgba(27, 26, 23, 0.13);
+  --border-strong: rgba(27, 26, 23, 0.24);
+  --accent: #2f3a6b; /* deep muted navy */
+  --accent-strong: #222a51;
+  --accent-soft: rgba(47, 58, 107, 0.09);
+  --ring: rgba(47, 58, 107, 0.4);
+  --grid-line: rgba(27, 26, 23, 0.05);
 }
 
+.dark {
+  --background: #12110f; /* warm near-black */
+  --surface: #1a1815;
+  --surface-2: #24211c;
+  --foreground: #ece8e0; /* warm off-white */
+  --muted: #a29d92;
+  --faint: #6f6a6099;
+  --faint-solid: #6f6a60;
+  --border: rgba(236, 232, 224, 0.12);
+  --border-strong: rgba(236, 232, 224, 0.22);
+  --accent: #9aa6e0; /* lifted navy for dark bg */
+  --accent-strong: #b6bef0;
+  --accent-soft: rgba(154, 166, 224, 0.12);
+  --ring: rgba(154, 166, 224, 0.45);
+  --grid-line: rgba(236, 232, 224, 0.045);
+}
+
+/* ---------------------------------------------------------------------------
+   Tailwind theme mapping — exposes tokens as utilities
+--------------------------------------------------------------------------- */
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint-solid);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, "Iowan Old Style", Georgia,
+    serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --radius-xs: 2px;
+  --radius: 3px;
+  --radius-lg: 6px;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Serif display headings carry the editorial character. */
+  .font-display {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+  }
+
+  ::selection {
+    background: var(--foreground);
+    color: var(--background);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  :focus:not(:focus-visible) {
+    outline: none;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---------------------------------------------------------------------------
+   Utilities
+--------------------------------------------------------------------------- */
+@layer utilities {
+  .container-page {
+    width: 100%;
+    max-width: 78rem; /* ~1248px */
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .container-page {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  /* Mono label for indices, metrics, metadata */
+  .label-mono {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--faint-solid);
+  }
+
+  /* Tabular figures for metrics/data */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+
+  /* Very faint paper grid (used behind the hero only) */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+
+  .divider-top {
+    border-top: 1px solid var(--border);
+  }
+
+  /* Editorial link: ink text with an offset underline that reveals on hover */
+  .link-underline {
+    text-decoration: underline;
+    text-decoration-color: var(--border-strong);
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-color 0.2s ease;
+  }
+  .link-underline:hover {
+    text-decoration-color: var(--accent);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Reduced motion
+--------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

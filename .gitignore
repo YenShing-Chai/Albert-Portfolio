@@ -39,3 +39,16 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Raw source GLB/FBX uploads (processed into public/models/buildings) — kept local, not deployed
+raw-assets/
+
+# Raw asset sources (Blender/FBX scenes, original audio) — processed outputs live in public/, sources kept local
+GLB/
+Music/
+
+# Internal build brief — kept local (public repo)
+CLAUDE_CODE_EXECUTIVE_PRODUCT_PORTFOLIO.md
+
+# Model/rig backups — kept local, not deployed
+*.bak
