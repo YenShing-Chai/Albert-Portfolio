@@ -26,7 +26,6 @@ import {
 import { Character, type WalkTarget } from "./character";
 import { ModelBuilding } from "./model-building";
 import { WanderingCats } from "./wandering-cats";
-import { TreeMonkeys } from "./tree-monkeys";
 import { Hotspot } from "./hotspot";
 
 const ISLAND_RADIUS = 6;
@@ -380,13 +379,6 @@ export function Scene({
       {islandId === "kuching" && !reducedMotion && (
         <Suspense fallback={null}>
           <WanderingCats />
-        </Suspense>
-      )}
-
-      {/* ...and a few monkeys perched in the trees. */}
-      {islandId === "kuching" && (
-        <Suspense fallback={null}>
-          <TreeMonkeys reducedMotion={reducedMotion} />
         </Suspense>
       )}
     </>
