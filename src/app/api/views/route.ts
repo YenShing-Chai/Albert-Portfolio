@@ -14,7 +14,20 @@ const redis = url && token ? new Redis({ url, token }) : null;
 const KEY = "portfolio:visits";
 
 // Read the current total without incrementing (returning visitors).
-export async function GET() {
+export async function GET(req: Request) {
+  // Safe diagnostic: /api/views?debug=1 reports which config it found. Returns
+  // env var NAMES only (never token values), plus whether a client was built.
+  if (new URL(req.url).searchParams.get("debug") === "1") {
+    return NextResponse.json({
+      hasUrl: Boolean(url),
+      hasToken: Boolean(token),
+      redisReady: Boolean(redis),
+      candidateEnvKeys: Object.keys(process.env)
+        .filter((k) => /redis|kv|upstash/i.test(k))
+        .sort(),
+    });
+  }
+
   if (!redis) return NextResponse.json({ count: null });
   try {
     const count = (await redis.get<number>(KEY)) ?? 0;
