@@ -19,9 +19,8 @@ export const site = {
   email: "yshing1992@gmail.com",
   linkedin: "https://www.linkedin.com/in/yenshingchai",
   linkedinHandle: "in/yenshingchai",
-  // Replace with the real number in international format (no +, no spaces),
-  // e.g. "60123456789". Kept as a placeholder until provided.
-  whatsapp: "60000000000",
+  // International format (no +, no spaces) — used for the wa.me contact link.
+  whatsapp: "60128958842",
   resumePath: "/resume/Albert-Chai-Head-of-Product-Resume.pdf",
 } as const;
 
