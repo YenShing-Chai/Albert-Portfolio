@@ -27,8 +27,10 @@ function Row({
   children: React.ReactNode;
 }) {
   return (
-    <section className="grid gap-4 border-t border-border py-8 md:grid-cols-12 md:gap-8">
-      <p className="label-mono md:col-span-3 md:pt-1">{label}</p>
+    // print:block flattens the label/content grid so long sections flow across
+    // page breaks instead of jumping whole to the next page (wasted whitespace).
+    <section className="grid gap-4 border-t border-border py-8 print:block print:break-before-auto print:py-5 md:grid-cols-12 md:gap-8">
+      <p className="label-mono print:mb-2 md:col-span-3 md:pt-1">{label}</p>
       <div className="md:col-span-9">{children}</div>
     </section>
   );
@@ -37,8 +39,8 @@ function Row({
 export default function ResumePage() {
   return (
     <main className="container-page max-w-5xl py-10">
-      {/* Top bar */}
-      <div className="flex items-center justify-between">
+      {/* Top bar (hidden when printing / exporting to PDF) */}
+      <div className="flex items-center justify-between print:hidden">
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
@@ -112,7 +114,7 @@ export default function ResumePage() {
         <Row label="Experience">
           <div className="space-y-7">
             {experience.map((r) => (
-              <div key={r.id}>
+              <div key={r.id} className="break-inside-avoid">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4">
                   <h3 className="font-display text-xl text-foreground">
                     {r.title}
@@ -135,7 +137,10 @@ export default function ResumePage() {
         <Row label="Selected work">
           <div className="grid gap-4 sm:grid-cols-2">
             {featuredProjects.map((p) => (
-              <div key={p.slug} className="rounded border border-border p-4">
+              <div
+                key={p.slug}
+                className="break-inside-avoid rounded border border-border p-4"
+              >
                 <div className="flex items-center justify-between gap-2">
                   <h3 className="font-medium text-foreground">{p.title}</h3>
                   <StatusBadge status={p.status} />
@@ -157,7 +162,7 @@ export default function ResumePage() {
         <Row label="Skills">
           <div className="space-y-5">
             {skillGroups.map((g) => (
-              <div key={g.id}>
+              <div key={g.id} className="break-inside-avoid">
                 <p className="mb-2 text-sm font-medium text-foreground">
                   {g.title}
                 </p>
@@ -175,7 +180,7 @@ export default function ResumePage() {
         <Row label="Education">
           <div className="space-y-5">
             {education.map((e) => (
-              <div key={e.credential}>
+              <div key={e.credential} className="break-inside-avoid">
                 <p className="font-medium text-foreground">{e.credential}</p>
                 <p className="text-sm text-muted">
                   {e.institution}
