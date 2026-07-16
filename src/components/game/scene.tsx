@@ -1,8 +1,9 @@
 "use client";
 
-import { Suspense } from "react";
-import { type ThreeEvent } from "@react-three/fiber";
+import { Suspense, useLayoutEffect } from "react";
+import { type ThreeEvent, useThree } from "@react-three/fiber";
 import { OrbitControls, Sparkles, useGLTF } from "@react-three/drei";
+import * as THREE from "three";
 import { places, type PlaceId } from "@/data/places";
 import {
   islands,
@@ -108,6 +109,57 @@ function CountryBuilding({ spot }: { spot: CountrySpot }) {
   return <B />;
 }
 
+// The island is wide but a phone screen is tall and narrow, so a fixed camera
+// crops the world. This reframes it from the viewport aspect ratio: on portrait
+// screens it widens the lens and dollies back so the whole island stays in view,
+// while desktop keeps its original [9, 8.5, 11] / fov-34 framing. Re-runs on
+// resize / orientation change (and once the OrbitControls register).
+const CAM_TARGET = new THREE.Vector3(0, 0.6, 0.4);
+const CAM_DIR = new THREE.Vector3(9, 7.9, 10.6).normalize();
+
+function ResponsiveCamera() {
+  const camera = useThree((s) => s.camera as THREE.PerspectiveCamera);
+  const controls = useThree(
+    (s) => s.controls as unknown as {
+      minDistance: number;
+      maxDistance: number;
+      target: THREE.Vector3;
+      update: () => void;
+    } | null,
+  );
+  const width = useThree((s) => s.size.width);
+  const height = useThree((s) => s.size.height);
+  const aspect = width / Math.max(1, height);
+
+  useLayoutEffect(() => {
+    let fov: number;
+    let dist: number;
+    if (aspect >= 1.1) {
+      // Landscape / desktop — the original framing.
+      fov = 34;
+      dist = 16;
+    } else {
+      // Ramp from square-ish (t=0) to a tall phone (t=1): wider lens + longer
+      // dolly so a ~6.5-unit-radius island keeps a little margin on all sides.
+      const t = THREE.MathUtils.clamp((1.1 - aspect) / (1.1 - 0.45), 0, 1);
+      fov = THREE.MathUtils.lerp(37, 52, t);
+      dist = THREE.MathUtils.lerp(17, 31, t);
+    }
+    camera.fov = fov;
+    camera.position.copy(CAM_TARGET).addScaledVector(CAM_DIR, dist);
+    camera.updateProjectionMatrix();
+    camera.lookAt(CAM_TARGET);
+    if (controls) {
+      controls.minDistance = Math.max(8, dist - 5);
+      controls.maxDistance = dist + 12;
+      controls.target.copy(CAM_TARGET);
+      controls.update();
+    }
+  }, [aspect, camera, controls]);
+
+  return null;
+}
+
 interface Renderable {
   id: string;
   label: string;
@@ -172,13 +224,15 @@ export function Scene({
 
   return (
     <>
-      {/* Drag to orbit the island; kept on the cozy iso tilt, no pan. */}
+      {/* Reframe the camera to the viewport so the island fits on phones too. */}
+      <ResponsiveCamera />
+
+      {/* Drag to orbit the island; kept on the cozy iso tilt, no pan.
+          minDistance / maxDistance are set by ResponsiveCamera per aspect. */}
       <OrbitControls
         makeDefault
         target={[0, 0.6, 0.4]}
         enablePan={false}
-        minDistance={12}
-        maxDistance={22}
         minPolarAngle={0.75}
         maxPolarAngle={1.3}
         rotateSpeed={0.7}

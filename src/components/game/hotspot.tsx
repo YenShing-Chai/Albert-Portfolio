@@ -47,10 +47,12 @@ export function Hotspot({
               : "border-[#e4d3ae] bg-[#fbf3e1] text-[#6b543a] group-hover/pin:-translate-y-0.5 group-hover/pin:border-[#c8a06a]",
           ].join(" ")}
         >
-          <span aria-hidden className="text-base leading-none">
+          <span aria-hidden className="text-lg leading-none sm:text-base">
             {place.emoji}
           </span>
-          {place.label}
+          {/* Labels overflow/overlap on narrow screens, so show emoji-only pins
+              below sm; the bottom dock covers labelled navigation on mobile. */}
+          <span className="hidden sm:inline">{place.label}</span>
           {visited && !active && (
             <span aria-hidden className="text-[#8bbf6a]">
               ✓

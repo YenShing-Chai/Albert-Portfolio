@@ -42,11 +42,10 @@ export function IntroOverlay({ onStart }: { onStart: () => void }) {
           Welcome to Albert&rsquo;s little world
         </h1>
         <p className="mt-3 text-sm leading-relaxed text-[#6b543a]">
-          I&rsquo;m the little character down there. Click a{" "}
-          <span className="font-semibold">place</span> and I&rsquo;ll walk over
-          to tell you about that part of my story — and visit the{" "}
-          <span className="font-semibold">✈️ Airport</span> to fly through the
-          countries I&rsquo;ve worked in.
+          I&rsquo;m the little character down there! Click on any location and
+          I&rsquo;ll walk over to share that part of my story. Don&rsquo;t forget
+          to visit the <span className="font-semibold">✈️ Airport</span> to
+          explore the countries I&rsquo;ve worked in.
         </p>
         <button
           type="button"
