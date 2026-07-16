@@ -78,12 +78,11 @@ export const operatingPractices: string[] = [
 
 /** AI operating model — domains where AI creates leverage. */
 export const aiNodes: AiNode[] = [
-  { id: "strategy", title: "Strategy", example: "AI-assisted market and competitor synthesis to sharpen product bets." },
-  { id: "product", title: "Product", example: "Faster discovery, documentation, and PRD drafting with human review." },
-  { id: "engineering", title: "Engineering", example: "AI-assisted prototyping and delivery with Claude Code." },
-  { id: "marketing", title: "Marketing", example: "Agentic campaign setup from brief to publish, human-approved." },
+  { id: "marketing", title: "Marketing", example: "An automated workflow that manages the entire campaign lifecycle—from campaign requirement submission, automatic platform setup, and checker/maker approval reminders, to final publishing." },
+  { id: "strategy", title: "Strategy", example: "Leverage AI to analyze market trends and competitor insights, enabling faster and more informed product decisions." },
+  { id: "product", title: "Product", example: "Accelerate product discovery, documentation, and PRD creation with AI-assisted drafting and human validation." },
+  { id: "engineering", title: "Engineering", example: "Speed up prototyping and software delivery through AI-assisted development with Claude Code." },
   { id: "operations", title: "Operations", example: "Automated repetitive workflows and reporting." },
-  { id: "governance", title: "Governance", example: "Playbooks and human-in-the-loop controls for safe AI adoption." },
 ];
 
 export const aiCapabilities: string[] = [

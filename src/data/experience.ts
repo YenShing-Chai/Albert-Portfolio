@@ -7,47 +7,22 @@ import type { ExperienceRole } from "@/types/content";
 export const experience: ExperienceRole[] = [
   {
     id: "hextar-hop",
-    title: "Head of Product (Acting)",
+    title: "Head of Product",
     company: "Hextar Technologies Solutions Berhad",
     location: "Kuala Lumpur, Malaysia",
-    start: "Feb 2026",
+    start: "Jul 2025",
     end: "Present",
-    period: "Feb 2026 — Present",
+    period: "Jul 2025 — Present",
     current: true,
     summary:
-      "Lead end-to-end product strategy for a B2C fintech ecosystem serving 300,000+ registered users, from vision and roadmap to monetization and delivery.",
+      "Own the product vision, strategy, and roadmap for the MoneyX fintech ecosystem, aligning product investments with commercial objectives.",
     highlights: [
-      "Own product vision, roadmap, portfolio priorities, and execution plans aligned to revenue, user growth, and operational efficiency.",
-      "Lead cross-functional teams across Product, Engineering, Design, Marketing, Partnerships, Operations, and Customer Success.",
-      "Establish product governance, OKRs, KPI frameworks, delivery cadence, and executive stakeholder communication.",
-      "Drive AI transformation using Claude Code, agentic AI, and automation workflows across product and marketing.",
-      "Manage vendor and platform integrations across fintech, loyalty, insurance, payments, CRM, and communications.",
-    ],
-    achievements: [
-      {
-        title: "Zero-to-one voucher platform",
-        points: [
-          "Built and shipped an internal voucher platform from zero to one, replacing an external dependency.",
-          "Enabled full ownership of campaign, voucher, redemption, and reporting workflows.",
-          "Estimated ~RM120K in annual cost savings with improved flexibility and control.",
-        ],
-      },
-      {
-        title: "Internal CPaaS platform (in development)",
-        points: [
-          "Leading development of an internal communications platform to replace an external CPaaS provider.",
-          "Supports push, email, SMS, WhatsApp, OTP, campaign management, and delivery reporting.",
-          "Estimated ~RM192K in annual savings; reduces vendor dependency and enables reuse across products.",
-        ],
-      },
-      {
-        title: "AI transformation",
-        points: [
-          "Introduced Claude Code and agentic AI into product and marketing workflows.",
-          "Automated repetitive campaign creation and product documentation tasks.",
-          "Established an internal playbook for safe AI adoption and governance.",
-        ],
-      },
+      "Lead cross-functional teams across Product, Engineering, Design, Marketing, Partnership, and Customer Success.",
+      "Delivered a zero-to-one enterprise Voucher Platform, replacing third-party dependency and saving RM120,000 annually.",
+      "Leading development of an internal CPaaS platform supporting Push Notification, Email, SMS, and WhatsApp, with estimated annual savings of RM192,000.",
+      "Established product governance, OKRs, prioritisation framework, and roadmap planning to improve execution quality.",
+      "Championed AI transformation using Claude Code, ChatGPT, and agentic AI to automate product documentation, campaign operations, and internal workflows.",
+      "Drive executive stakeholder communication, strategic partnerships, and product investment decisions.",
     ],
   },
   {
@@ -56,16 +31,16 @@ export const experience: ExperienceRole[] = [
     company: "Hextar Technologies Solutions Berhad",
     location: "Kuala Lumpur, Malaysia",
     start: "Aug 2024",
-    end: "Jan 2026",
-    period: "Aug 2024 — Jan 2026",
+    end: "Jul 2025",
+    period: "Aug 2024 — Jul 2025",
     summary:
-      "Led business strategy and roadmap planning for the fintech ecosystem, aligning product and commercial direction with executive leadership.",
+      "Led business strategy and commercial direction for the fintech ecosystem, overseeing product, marketing, customer experience, and business development.",
     highlights: [
-      "Oversaw Product, Marketing, Customer Experience, and Business Development functions.",
-      "Managed P&L responsibilities, budgeting, forecasting, and commercial planning.",
-      "Drove partner acquisition and onboarding; negotiated partnership agreements and commercial terms.",
-      "Monitored partner performance and mutual value delivery.",
-      "Built and scaled a business unit of more than 12 professionals.",
+      "Oversaw product, marketing, customer experience, and BD teams to ensure strategic alignment.",
+      "Managed P&L responsibilities, including budgeting, forecasting, and financial reporting.",
+      "Drove partner acquisition and onboarding aligned with strategic objectives.",
+      "Drafted, negotiated, and finalized strategic partnership agreements.",
+      "Monitored partner performance, ensuring mutual value delivery.",
     ],
   },
   {

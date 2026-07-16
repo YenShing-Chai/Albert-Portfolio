@@ -8,15 +8,15 @@ import type { CaseStudy } from "@/types/content";
 export const projects: CaseStudy[] = [
   {
     slug: "fintech-ecosystem",
-    title: "B2C Fintech Ecosystem",
-    subtitle: "Product strategy & portfolio ownership at 300K+ user scale",
+    title: "MoneyX App (B2C)",
+    subtitle: "Product strategies & portfolio — multiple product ownerships",
     category: ["Fintech", "B2C", "Product Portfolio", "Mobile App"],
     status: "launched",
     featured: true,
     summary:
-      "End-to-end product ownership of a consumer fintech ecosystem spanning loans, insurance, banking products, investment, loyalty, vouchers, and rewards.",
+      "End-to-end product ownership of the MoneyX consumer fintech ecosystem spanning loans, insurance, banking products, investment, loyalty, vouchers, and rewards.",
     problem:
-      "A fast-growing fintech app needed unified product strategy, monetization, and governance to scale beyond 300,000 users without fragmenting the roadmap.",
+      "A fast-growing fintech app needed unified product strategy, monetization, and governance to scale without fragmenting the roadmap.",
     role: "Head of Product — vision, roadmap, monetization, and delivery.",
     responsibilities: [
       "Set product vision, roadmap, and portfolio priorities aligned to revenue and growth.",
@@ -30,8 +30,8 @@ export const projects: CaseStudy[] = [
       "Introduced analytics and experimentation to guide monetization decisions.",
     ],
     impact: [
-      { label: "Registered users", value: "300K+", type: "realized" },
       { label: "Product lines", value: "7+", type: "realized" },
+      { label: "Ownership", value: "End-to-end", type: "realized" },
       { label: "Governance", value: "OKRs + KPI framework", type: "realized" },
     ],
     capabilities: [
@@ -47,8 +47,9 @@ export const projects: CaseStudy[] = [
   },
   {
     slug: "voucher-platform",
-    title: "Zero-to-One Voucher Platform",
-    subtitle: "Replacing a third-party dependency with an in-house platform",
+    title: "VouchersX from Zero to One",
+    subtitle:
+      "A fully in-house voucher platform built to eliminate third-party dependencies, providing greater control, flexibility, scalability, and long-term cost savings.",
     category: ["Platform Product", "Cost Optimization", "B2B2C"],
     status: "launched",
     featured: true,
@@ -91,7 +92,9 @@ export const projects: CaseStudy[] = [
       "Cost Optimization",
     ],
     status: "ongoing",
-    featured: true,
+    // Removed from the "Albert's Project" list per direction; kept in the dataset
+    // (it's still referenced in the Hextar role highlights). Set featured:true to restore.
+    featured: false,
     summary:
       "Leading development of an internal communications platform to replace an external CPaaS provider across push, email, SMS, WhatsApp, and OTP.",
     problem:

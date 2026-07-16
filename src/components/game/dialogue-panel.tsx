@@ -14,7 +14,6 @@ import { impactCards } from "@/data/metrics";
 import { aiNodes, aiCapabilities } from "@/data/leadership";
 import { site } from "@/lib/site";
 import { LinkedInIcon, WhatsAppIcon } from "@/components/brand-icons";
-import { ContactForm } from "./contact-form";
 
 const ink = "#3b2f22";
 const body = "#6b543a";
@@ -195,7 +194,6 @@ function ContactContent() {
           <WhatsAppIcon className="h-3.5 w-3.5" /> WhatsApp
         </a>
       </div>
-      <ContactForm />
     </div>
   );
 }
