@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FileText, HelpCircle, Volume2, VolumeX, X } from "lucide-react";
 import { places } from "@/data/places";
 import { islands, type IslandId } from "@/data/islands";
+import { VisitorBadge } from "./visitor-badge";
 
 /* ------------------------------------------------------------- Loader */
 export function GameLoader() {
@@ -130,8 +131,8 @@ export function GameChrome({
 
   return (
     <>
-      {/* Top-left: help */}
-      <div className="pointer-events-none absolute left-4 top-4 z-20">
+      {/* Top-left: help + visitor count */}
+      <div className="pointer-events-none absolute left-4 top-4 z-20 flex flex-col items-start gap-2">
         <button
           type="button"
           onClick={() => setHelp(true)}
@@ -140,6 +141,7 @@ export function GameChrome({
         >
           <HelpCircle className="h-5 w-5" />
         </button>
+        <VisitorBadge />
       </div>
 
       {/* Top-center: current country + fly home (only away from the hub) */}
