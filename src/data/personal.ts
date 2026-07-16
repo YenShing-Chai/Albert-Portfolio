@@ -12,7 +12,7 @@ export const personal = {
   currentLocation: site.location, // Kuala Lumpur, Malaysia
   birthplace: "Kuching, Malaysia",
   birthDate: "Add birth date in personal.ts",
-  phone: "Add phone in personal.ts",
+  phone: "+60 12-895 8842",
   email: site.email,
   languages: ["English", "Bahasa Malaysia", "Mandarin"],
   funFact:
